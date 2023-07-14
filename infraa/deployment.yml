@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata: 
   name: busapp 
-  namespace: dev-space 
+  namespace: dev
 spec: 
   replicas: 10
   strategy: 
