@@ -1,0 +1,34 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: busapp 
+  namespace: dev-space 
+spec: 
+  replicas: 1 
+  strategy: 
+    type: RollingUpdate 
+    rollingUpdate: 
+      maxUnavailable: 50% 
+      maxSurge: 50% 
+  selector: 
+    matchLabels: 
+      app: bus 
+      tier: frontend 
+  template: 
+    metadata: 
+      labels: 
+        app: bus 
+        tier: frontend 
+    spec: 
+      containers: 
+        - name: busapp 
+          image: learnitguide/busapp:2.1 
+          ports: 
+            - containerPort: 8001 
+          resources: 
+            requests: 
+              cpu: 250m 
+              memory: 512Mi 
+            limits: 
+              memory: 2048Mi 
+              cpu: 500m
